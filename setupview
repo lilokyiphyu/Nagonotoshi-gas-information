@@ -1,0 +1,19 @@
+private function _setupView()
+			{
+				$customer_info = SessionManager::getCustomerInfo();
+
+				$param = array();
+
+				//$customer_list = $this->_query( $this->_getDBh(), "customer_list_select", $param, TRUE );
+
+				$customer_list = Functions::selectFrom($this->_getDBh(), 'CUSTOMER', $param);
+
+				$lists = array( 'disp_list'     => $customer_list,
+						'param'         => $param,
+						'search_assign' => '');
+				$this->_saveDispdata($lists);
+
+				$this->_smarty->assign('customer_list', $customer_list);
+
+
+			}
